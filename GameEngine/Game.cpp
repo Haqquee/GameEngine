@@ -1,6 +1,12 @@
 #include "Game.h"
 #include <SDL.h>
+#include <SDL_image.h>
 #include <iostream>
+#include "TextureManager.h"
+
+
+SDL_Texture* playerTexture;
+
 
 Game::Game() 
 {
@@ -27,6 +33,7 @@ void Game::init(const char* title, int width, int height)
 		isRunning = false;
 	}
 
+	playerTexture = TextureManager::LoadTexture(renderer, "assets/player.png");
 }
 
 void Game::handleEvents()
@@ -44,5 +51,18 @@ void Game::handleEvents()
 		break;
 	}
 }
+
+void Game::update()
+{
+
+}
+
+void Game::render()
+{
+	SDL_RenderClear(renderer);
+	SDL_RenderCopy(renderer, playerTexture, NULL, NULL);
+	SDL_RenderPresent(renderer);
+}
+
 
 bool Game::runCheck() { return isRunning; };

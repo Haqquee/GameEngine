@@ -9,6 +9,8 @@ public:
 	~Game();
 	void init(const char* title, int width, int height);
 	void handleEvents();
+	void update();
+	void render();
 	bool runCheck();
 
 private:
