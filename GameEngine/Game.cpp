@@ -3,10 +3,13 @@
 #include <SDL_image.h>
 #include <iostream>
 #include "TextureManager.h"
+#include "ECS/ECS.h"
+#include "ECS/Components.h"
 
 
 SDL_Texture* playerTexture;
-
+Manager manager;
+auto& player(manager.addEntity());
 
 Game::Game() 
 {
@@ -34,6 +37,7 @@ void Game::init(const char* title, int width, int height)
 	}
 
 	playerTexture = TextureManager::LoadTexture(renderer, "assets/player.png");
+	player.addComponent<PositionComponent>();
 }
 
 void Game::handleEvents()
@@ -54,6 +58,7 @@ void Game::handleEvents()
 
 void Game::update()
 {
+	manager.update();
 
 }
 
